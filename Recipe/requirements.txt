@@ -3,3 +3,4 @@ openai
 whisper
 streamlit
 pytube
+openai-whisper
