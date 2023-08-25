@@ -1,6 +1,6 @@
+openai-whisper
 python-dotenv
 openai
 whisper
 streamlit
 pytube
-openai-whisper
