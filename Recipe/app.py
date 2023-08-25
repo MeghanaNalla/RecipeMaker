@@ -1,7 +1,6 @@
 import streamlit as st
 from pytube import YouTube
 from pathlib import Path
-import whisper 
 import os
 import openai
 from dotenv import load_dotenv
@@ -10,10 +9,10 @@ load_dotenv()
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-@st.cache_resource
-def load_model():
-    model = whisper.load_model("base")
-    return model
+# @st.cache_resource
+# def load_model():
+#     model = whisper.load_model("base")
+#     return model
 
 def save_video(url, video_filename):
     youtubeObject = YouTube(url)
@@ -44,10 +43,10 @@ def save_audio(url):
     return yt.title, audio_filepath, video_filename
 
 def audio_to_transcript(audio_file):
-    model = load_model()
-    result = model.transcribe(audio_file)
-    transcript = result["text"]
-    return transcript
+    # model = load_model()
+   transcript = openai.Audio.transcribe("whisper-1", file=open(audio_file, "rb"))
+   return transcript["text"]
+
 
 def text_to_recipe(text):
     response = openai.Completion.create(
